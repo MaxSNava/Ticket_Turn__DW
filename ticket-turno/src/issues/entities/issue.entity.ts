@@ -1,15 +1,14 @@
-import { Column, Entity, PrimaryGeneratedColumn } from "typeorm";
+import { Entity, PrimaryGeneratedColumn, Column, OneToMany } from 'typeorm';
+import { Ticket } from '../../tickets/entities/ticket.entity';
 
-@Entity('tramites')
+@Entity('issues')
 export class Issue {
-
   @PrimaryGeneratedColumn('uuid')
   id: string;
 
-  @Column({
-    type: 'varchar',
-    length: 150,
-    nullable: false
-  })
-  name: string;
+  @Column({ type: 'varchar', length: 255 })
+  description: string;
+
+  @OneToMany(() => Ticket, (ticket) => ticket.issue)
+  tickets: Ticket[];
 }

@@ -7,10 +7,7 @@ import { Parameter } from './entities/parameter.entity';
 @Module({
   controllers: [ParametersController],
   providers: [ParametersService],
-  imports: [
-    TypeOrmModule.forFeature([
-      Parameter
-    ])
-  ]
+  imports: [TypeOrmModule.forFeature([Parameter])],
+  exports: [ParametersService]
 })
 export class ParametersModule {}

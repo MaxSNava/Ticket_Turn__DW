@@ -43,6 +43,6 @@ export class TicketsService {
 
   private handleDBExceptions(error: any) {
     if (error.code === '23505') throw new BadRequestException(error.detail);
-    throw new InternalServerErrorException('Unexpected error, check the server logs');
+    throw new InternalServerErrorException({ message: error.message });
   }
 }

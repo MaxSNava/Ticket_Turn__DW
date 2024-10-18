@@ -3,7 +3,7 @@ import { IsDate, IsInt, IsString } from "class-validator";
 
 export class CreateTicketDto {
   @IsInt()
-  turn_number: number;
+  turnNumber: number;
   @IsDate()
   @Type(() => Date)
   date: Date;

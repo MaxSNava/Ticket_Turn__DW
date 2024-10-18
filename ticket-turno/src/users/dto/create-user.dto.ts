@@ -4,9 +4,9 @@ export class CreateUserDto {
   @IsString()
   curp: string;
   @IsString()
-  name: string;
+  firstName: string;
   @IsString()
-  lastname: string;
+  lastName: string;
   @IsString()
   phone: string;
   @IsString()

@@ -15,7 +15,8 @@ export class IssuesService {
 
   async create(createIssueDto: CreateIssueDto) {
     try {
-      await this.issuesRepository.save(createIssueDto);
+      const issue = this.issuesRepository.create(createIssueDto);
+      await this.issuesRepository.save(issue);
       return 'Created successfully';
     } catch (error) {
       this.handleDBExceptions(error);
@@ -28,9 +29,18 @@ export class IssuesService {
 
   async update(id: string, updateIssueDto: UpdateIssueDto) {
     try {
-      const result = await this.issuesRepository.update(id, updateIssueDto);
-      if (result.affected === 0)  throw new NotFoundException(`User with ID ${id} not found`);
-      return 'Updated successfully';
+      // Buscar y preparar la actualización
+      const issue = await this.issuesRepository.preload({
+        id,
+        ...updateIssueDto,
+      });
+  
+      // Si no se encuentra el registro, lanzar una excepción
+      if (!issue) throw new NotFoundException(`Issue with ID ${id} not found`);
+  
+      // Guardar la entidad actualizada en la base de datos
+      await this.issuesRepository.save(issue);
+      return `Updated item with ID ${id}`;
     } catch (error) {
       this.handleDBExceptions(error);
     }

@@ -15,12 +15,14 @@ export class UsersService {
 
   async create(createUserDto: CreateUserDto) {
     try {
-      await this.usersRepository.save(createUserDto);
+      const user = this.usersRepository.create(createUserDto);
+      await this.usersRepository.save(user);
       return 'Created successfully';
     } catch (error) {
       this.handleDBExceptions(error);
     }
   }
+  
 
   async findAll() {
     return await this.usersRepository.find();

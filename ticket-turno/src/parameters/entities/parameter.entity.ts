@@ -1,21 +1,13 @@
-import { Column, Entity, PrimaryGeneratedColumn } from "typeorm";
+import { Entity, PrimaryGeneratedColumn, Column } from 'typeorm';
 
-@Entity('parametros')
+@Entity('parameters')
 export class Parameter {
-
   @PrimaryGeneratedColumn('uuid')
   id: string;
 
-  @Column({
-    type: 'varchar',
-    length: 150,
-    nullable: false
-  })
-  dayWeek: string;
+  @Column({ type: 'varchar', length: 10 })
+  dayOfWeek: string;
 
-  @Column({
-    type: 'int',
-    nullable: false
-  })
+  @Column({ type: 'int' })
   maxTurns: number;
 }
