@@ -15,6 +15,7 @@ export class UsersService {
 
   async create(createUserDto: CreateUserDto) {
     try {
+      console.log('Datos recibidos para crear usuario:', createUserDto);
       const user = this.usersRepository.create(createUserDto);
       await this.usersRepository.save(user);
       return 'Created successfully';
@@ -22,6 +23,7 @@ export class UsersService {
       this.handleDBExceptions(error);
     }
   }
+  
   
 
   async findAll() {

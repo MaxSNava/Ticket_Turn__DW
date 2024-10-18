@@ -6,7 +6,7 @@ export class User {
   @PrimaryGeneratedColumn('uuid')
   id: string;
 
-  @Column({ type: 'varchar', length: 18, unique: true })
+  @Column({ type: 'varchar', length: 18 })
   curp: string;
 
   @Column({ type: 'varchar', length: 255 })
@@ -18,7 +18,7 @@ export class User {
   @Column({ type: 'varchar', length: 15, nullable: true })
   phone: string;
 
-  @Column({ type: 'varchar', length: 255, unique: true, nullable: true })
+  @Column({ type: 'varchar', length: 255, nullable: true })
   email: string;
 
   @OneToMany(() => Ticket, (ticket) => ticket.user)
